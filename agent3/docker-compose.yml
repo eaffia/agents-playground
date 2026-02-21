@@ -1,0 +1,10 @@
+services:
+  agent3:
+    image: python:3.12-slim
+    working_dir: /app
+    volumes:
+      - ./:/app
+    env_file:
+      - .env
+    command: python agent.py
+    restart: unless-stopped
