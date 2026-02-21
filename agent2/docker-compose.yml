@@ -1,0 +1,5 @@
+services:
+  webcheck-agent:
+    image: debian:stable-slim
+    command: bash -lc 'apt-get update -y >/dev/null && apt-get install -y curl ca-certificates >/dev/null && while true; do echo "----"; date -u; curl -sS -o /tmp/page.html -w "HTTP %{http_code}\n" https://example.com || true; head -n 1 /tmp/page.html 2>/dev/null || true; sleep 60; done'
+    restart: unless-stopped
